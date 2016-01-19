@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="Fragment">fragment.fsh</file>
+        <file alias="Vertex">vertex.vsh</file>
+        <file alias="Cube">cube.obj</file>
+        <file alias="Sphere">sphere.obj</file>
+    </qresource>
+</RCC>
