@@ -4,6 +4,7 @@
 #include <QVector>
 #include <QString>
 #include <QFile>
+#include <QImage>
 #include <QTextStream>
 #include "./objectmesh.h"
 #include "./objecttransformation.h"
@@ -21,6 +22,7 @@ class ObjectRender {
     int get_mesh_count() const;
     void render_models(QOpenGLShaderProgram *shader, Camara *camara);
     void load_obj(QString filename);
+    void load_height_map(QString filename);
     ~ObjectRender();
   private:
     QVector<ObjectMesh *> meshes;

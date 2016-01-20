@@ -143,6 +143,20 @@ void ObjectRender::load_obj(QString filename) {
     //mesh->restructure_object();
 }
 
+void ObjectRender::load_height_map(QString filename) {
+  QImage img(filename);
+  QVector < QVector3D > vertices;
+  // add the vertices from the heightmap
+  for ( int x = 0; x < img.width(); x++) {
+    for ( int y = 0; y < img.height(); y++) {
+      QVector3D position(x,
+                         qRed(img.pixel(x, y)),
+                         y);
+      vertices.append(position);
+    }
+  }
+}
+
 ObjectRender::~ObjectRender() {
 
 }

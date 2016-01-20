@@ -77,7 +77,7 @@ void RenderScene::paintGL() {
   /* enable cullmode CCW (counter clockwise) */
   //glEnable(GL_CULL_FACE);
   /* sets the color the screen needs to be cleared with */
-  glClearColor(0.5f, 1.0f, 1.0f, 1.0f);
+  glClearColor(0.392f, 0.584f, 0.929f, 1.0f);
   /* Clear the selected bits */
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   // Turn on wireframe mode
@@ -87,8 +87,8 @@ void RenderScene::paintGL() {
     assign_to_shaders();
   }
   // Turn on wireframe mode
- // glPolygonMode(GL_FRONT, GL_LINE);
-//  glPolygonMode(GL_BACK, GL_LINE);
+  // glPolygonMode(GL_FRONT, GL_LINE);
+  //  glPolygonMode(GL_BACK, GL_LINE);
 
   glDisable(GL_CULL_FACE);
   glDisable(GL_DEPTH_TEST);
