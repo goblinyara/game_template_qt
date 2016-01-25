@@ -29,9 +29,9 @@ void ObjectMesh::set_normals(QVector<QVector3D> normals) {
     this->vertex_normal_uv.replace(i, dat);
   }*/
   // assign buffer for normal
-  //this->normal_buffer.bind();
- // this->normal_buffer.allocate(this->normals.constData(),
- //                              this->normals.count() * sizeof(QVector3D));
+  this->normal_buffer.bind();
+  this->normal_buffer.allocate(this->normals.constData(),
+                               this->normals.count() * sizeof(QVector3D));
 }
 
 void ObjectMesh::set_normal_indices(QVector<GLuint> indices) {
@@ -68,7 +68,7 @@ void ObjectMesh::set_material(ObjectMaterial * material) {
   this->material = material;
 }
 
-const ObjectTransformation ObjectMesh::get_transformation() {
+const ObjectTransformation ObjectMesh::get_transformation() const {
   return this->transformation;
 }
 

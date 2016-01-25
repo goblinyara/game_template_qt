@@ -17,8 +17,10 @@ void RenderScene::initializeGL() {
   material->set_ambient_color(QVector3D(0.0, 0.0, 0.0));
   material->set_diffuse_color(QVector3D(0.5, 0.5, 0.5));
 
-  render->load_obj("://Sphere");
-    render->set_mesh_material(material, 0);
+ // render->load_obj("://Cube");
+  render->load_height_map("://Terrain_Texture");
+  for ( int i = 0; i < render->get_mesh_count(); i++)
+    render->set_mesh_material(material, i);
   this->objects.append(*render);
   this->objects.append(*render);
   this->camara_.append(new Camara());
@@ -53,13 +55,11 @@ void RenderScene::assign_to_shaders() {
       QMatrix4x4 projection;
       projection.perspective(60.0f, 4.0f/3.0f, 0.1f, 10000.0f);
       QMatrix4x4 view;
-      view.lookAt(QVector3D(2, 2, 0), QVector3D(0.1, 0.2, 0.1), QVector3D(0,1,0));
-      QMatrix4x4 world;
-      world.translate(0, 0, 0);
+      view.lookAt(QVector3D(26, 26, 26), QVector3D(0.1, 0.2, 0.1), QVector3D(0,1,0));
+
       this->shader->bind();
       this->shader->setUniformValue("qt_ProjectionMatrix",  projection);
       this->shader->setUniformValue("qt_ViewMatrix",  view);
-      this->shader->setUniformValue("qt_WorldMatrix",  world);
       this->shader->release();
       object_.render_models(shader, new Camara());
     }
@@ -89,7 +89,7 @@ void RenderScene::paintGL() {
   // Turn on wireframe mode
   // glPolygonMode(GL_FRONT, GL_LINE);
   //  glPolygonMode(GL_BACK, GL_LINE);
-
+  // bind the shader
   glDisable(GL_CULL_FACE);
   glDisable(GL_DEPTH_TEST);
 

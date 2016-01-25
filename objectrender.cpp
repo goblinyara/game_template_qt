@@ -32,6 +32,10 @@ int ObjectRender::get_mesh_count() const {
 void ObjectRender::render_models(QOpenGLShaderProgram *shader, Camara *camara) {
   foreach ( ObjectMesh * mesh_, this->meshes ) {
       shader->bind();
+      QMatrix4x4 world;
+      QVector3D pos = mesh_->get_transformation().get_position();
+      world.translate(pos.x(), pos.y(), pos.z());
+      shader->setUniformValue("qt_WorldMatrix",  world);
       mesh_->draw_mesh(shader, camara);
       shader->release();
   }
@@ -45,7 +49,7 @@ void ObjectRender::set_mesh_material(ObjectMaterial *material, int index) {
   }
 }
 
-void ObjectRender::load_obj(QString filename) {
+ObjectMesh * ObjectRender::load_obj(QString filename) {
   ObjectMesh *mesh = new ObjectMesh();
   QVector< QVector3D > temp_vertices;
   temp_vertices.clear();
@@ -138,21 +142,30 @@ void ObjectRender::load_obj(QString filename) {
     mesh->set_vertices(temp_vertices_complete);
     mesh->set_normals(temp_normals_complete);
    // mesh->set_normal_indices(normal_indices);
-    this->add_object_mesh(mesh);
+    //this->add_object_mesh(mesh);
 
     //mesh->restructure_object();
+   return mesh;
 }
 
 void ObjectRender::load_height_map(QString filename) {
+  ObjectMesh *terrain_block = load_obj("://Cube");
+  this->meshes.clear();
   QImage img(filename);
-  QVector < QVector3D > vertices;
   // add the vertices from the heightmap
   for ( int x = 0; x < img.width(); x++) {
     for ( int y = 0; y < img.height(); y++) {
+      for ( int j = 0; j < qRed(img.pixel(x, y)) + 1; j++) {
       QVector3D position(x,
-                         qRed(img.pixel(x, y)),
+                         j,
                          y);
-      vertices.append(position);
+      ObjectMesh * new_block =  new ObjectMesh();
+      *new_block = *terrain_block;
+      ObjectTransformation transformation;
+      transformation.set_position(position);
+      new_block->set_transformation(transformation);
+      add_object_mesh(new_block);
+      }
     }
   }
 }

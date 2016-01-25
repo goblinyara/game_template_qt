@@ -4,5 +4,6 @@
         <file alias="Vertex">vertex.vsh</file>
         <file alias="Cube">cube.obj</file>
         <file alias="Sphere">sphere.obj</file>
+        <file alias="Terrain_Texture">terrain.bmp</file>
     </qresource>
 </RCC>

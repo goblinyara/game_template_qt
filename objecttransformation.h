@@ -6,9 +6,9 @@
 class ObjectTransformation {
   public:
     ObjectTransformation();
-    const QVector3D get_position();
-    const QVector3D get_orientation();
-    const QVector3D get_scale();
+    const QVector3D get_position() const;
+    const QVector3D get_orientation() const;
+    const QVector3D get_scale() const;
     void set_position(QVector3D position);
     void set_orientation(QVector3D orientation);
     void set_scale(QVector3D scale);

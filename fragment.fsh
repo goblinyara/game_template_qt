@@ -7,6 +7,6 @@ uniform vec3 ambient_;
 uniform vec3 specular_;
 uniform float specular_intensity;
 void main() {
-  vec3 ndotl = vec3(-dot( normal_, vec3(-1) ));
+  vec3 ndotl = vec3(-dot( normal_, vec3(-0.5, -0.7, -0.8) ));
   gl_FragColor = vec4(ambient_ + diffuse_* ndotl, 1.0);///texture2D(qt_Texture0, qt_TexCoord0.st);
 }

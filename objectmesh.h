@@ -32,7 +32,7 @@ typedef struct { QVector3D vertex;
     void set_vertex_indices(QVector<GLuint> indices);
     const ObjectMaterial * get_material();
     void set_material(ObjectMaterial * material);
-    const ObjectTransformation get_transformation();
+    const ObjectTransformation get_transformation() const;
     void set_transformation(ObjectTransformation transformation);
     const int get_vertex_size() const;
     void draw_mesh(QOpenGLShaderProgram *shader, Camara *camara);

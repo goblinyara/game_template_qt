@@ -21,7 +21,7 @@ class ObjectRender {
     ObjectMesh * get_object_mesh(int index);
     int get_mesh_count() const;
     void render_models(QOpenGLShaderProgram *shader, Camara *camara);
-    void load_obj(QString filename);
+    ObjectMesh * load_obj(QString filename);
     void load_height_map(QString filename);
     ~ObjectRender();
   private:

@@ -5,15 +5,16 @@ ObjectTransformation::ObjectTransformation() {
   this->set_orientation(QVector3D(0, 0, 0));
   this->set_scale(QVector3D(1.0f, 1.0f, 1.0f));
 }
-const QVector3D ObjectTransformation::get_position() {
-  return this->position;
+const QVector3D ObjectTransformation::get_position() const {
+  const QVector3D position = this->position;
+  return position;
 }
 
-const QVector3D ObjectTransformation::get_orientation() {
+const QVector3D ObjectTransformation::get_orientation() const {
   return this->orientation;
 }
 
-const QVector3D ObjectTransformation::get_scale() {
+const QVector3D ObjectTransformation::get_scale() const {
   return this->scale;
 }
 
