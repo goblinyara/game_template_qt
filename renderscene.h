@@ -5,6 +5,8 @@
 #include <QVector>
 #include <QOpenGLShaderProgram>
 #include <QOpenGLBuffer>
+#include <QMatrix4x4>
+#include <QTimer>
 #include "./objectrender.h"
 #include "./objectmaterial.h"
 #include "./objectmesh.h"
@@ -30,6 +32,12 @@ class RenderScene: public QOpenGLWidget, protected QOpenGLFunctions {
     QOpenGLBuffer vertex_buffer;
     QOpenGLBuffer vertex_index_buffer;
     QVector<Camara *> camara_;
+    QMatrix4x4 projection;
+    QTimer frame_sync;
+    float rotate_y;
+
+  private slots:
+    void update_scene();
 };
 
 #endif // RENDERSCENE_H

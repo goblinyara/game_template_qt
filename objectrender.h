@@ -27,7 +27,6 @@ class ObjectRender {
   private:
     QVector<ObjectMesh *> meshes;
     ObjectTransformation global_transformation;
-
 };
 
 #endif // OBJECTRENDER_H
