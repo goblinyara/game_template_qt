@@ -36,6 +36,7 @@ void ObjectRender::render_models(QOpenGLShaderProgram *shader, Camara *camara) {
       QVector3D pos = mesh_->get_transformation().get_position();
       world.translate(pos.x(), pos.y(), pos.z());
       shader->setUniformValue("qt_WorldMatrix",  world);
+      shader->setUniformValue("qt_ViewMatrix", camara->get_camara());
       mesh_->draw_mesh(shader, camara);
       shader->release();
   }

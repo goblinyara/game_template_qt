@@ -20,8 +20,8 @@ void RenderScene::initializeGL() {
   material->set_diffuse_color(QVector3D(0.5, 0.5, 0.5));
 
 
-  render->add_object_mesh(render->load_obj("://Cube"));
-  //render->load_height_map("://Terrain_Texture");
+  //render->add_object_mesh(render->load_obj("://Cube"));
+  render->load_height_map("://Terrain_Texture");
   for ( int i = 0; i < render->get_mesh_count(); i++)
     render->set_mesh_material(material, i);
   this->objects.append(*render);
@@ -53,10 +53,14 @@ void RenderScene::load_shaders() {
 }
 
 void RenderScene::assign_to_shaders() {
+    Camara *cam = new Camara();
+    cam->set_camara_look_at(QVector3D(0.1, 0.2, 0.1),
+                           QVector3D(2, 2, 2));
+
   // assign each mesh
   foreach ( ObjectRender object_, this->objects ) {
     for ( int i = 0; i < object_.get_mesh_count(); i++) {
-      object_.render_models(shader, new Camara());
+      object_.render_models(shader, cam);
     }
   }
 }
@@ -87,7 +91,7 @@ void RenderScene::paintGL() {
   view.rotate(rotate_y, 0 ,1 ,0);
   this->shader->bind();
   this->shader->setUniformValue("qt_ProjectionMatrix",  projection);
-  this->shader->setUniformValue("qt_ViewMatrix",  view);
+  //this->shader->setUniformValue("qt_ViewMatrix",  view);
   this->shader->release();
 
   if ( this->shader->isLinked() ) {
